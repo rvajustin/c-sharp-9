@@ -1,6 +1,6 @@
 # C# 9.0 Primer
 
-There are large numebr of new features being released with C# 9.0 alongside .NET 5.  I'll cover some of the most ompelling features (IMHO) in this repository.  I hope this helps you in discovering C# 9.0! Feel free to check out [Microsoft's documentation on what's new with C# 9.0](https://docs.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-9) too!
+There are large number of new features being released with C# 9.0 alongside .NET 5.  I'll cover some of the most compelling features (IMHO) in this repository.  I hope this helps you in discovering C# 9.0! Feel free to check out [Microsoft's documentation on what's new with C# 9.0](https://docs.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-9) too!
 
 ## Contents
 1. [Records](#records)
