@@ -1,13 +1,13 @@
 # C# 9.0 Primer
 
-There are large numebr of new features being released with C# 9.0 alongside .NET 5.  I'll cover some of the most ompelling features (IMHO) in this repository.  I hope this helps you in discovering C# 9.0!
+There are large numebr of new features being released with C# 9.0 alongside .NET 5.  I'll cover some of the most ompelling features (IMHO) in this repository.  I hope this helps you in discovering C# 9.0! Feel free to check out [Microsoft's documentation on what's new with C# 9.0](https://docs.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-9) too!
 
 ## Contents
 1. [Records](#records)
 1. [Pattern matching](#pattern-matching)
 1. [Covariant return types](#covariant-return-types)
-1. [Low-level programming](#low-level-programming)
 1. [Other details](#other-details)
+
 ---
 
 ## Records
@@ -89,19 +89,87 @@ Assert.False(mine == tradeIn);
 ---
 
 ## Pattern matching
+Pattern matching is not necessarily *new*; it's been around since C# 7.0.  However, with C# 9.0, this feature has been greatly expanded.  
 
+Here's a classical example of a **switch statement** (even though I'm a proponent of [using enumeration classes instead of enums](https://docs.microsoft.com/en-us/dotnet/architecture/microservices/microservice-ddd-cqrs-patterns/enumeration-classes-over-enum-types)):
+```csharp
+public enum State {
+    Virginia,
+    California
+}
 
+public static string GetCapital(State state)
+{
+    string capital;
+
+    switch (state)
+    {
+        case State.Virginia:
+            capital = "Richmond";
+            break;
+        case State.California:
+            capital = "Sacramento";
+            break;
+        default:
+             throw new Exception("Blaaaaarg!");
+    };
+
+    return capital;
+}
+```
+
+Enter: the new **switch expression**.  Same ends, different means.
+```csharp
+public enum State {
+    Virginia,
+    California
+}
+
+public static string GetCapital(State state)
+{
+    string capital = state switch 
+    {
+        State.Virginia => "Richmond",
+        State.California => "Sacramento",
+        _ => throw new Exception("Blaaaaarg!")
+    }
+
+    return capital;
+}
+```
+
+### Switch expressions can have compound conditions
+You don't have to switch on a certain thing; you can switch on multiple things:
+```csharp
+public static string GetCapital(State state, int year)
+{
+    string capital = state switch 
+    {
+        State.Virginia => "Richmond",
+        State.California when year >= 1854 => "Sacramento",
+        State.California when year >= 1853 => "Benicia",
+        State.California when year >= 1852 => "Vallejo",
+        State.California when year >= 1850 => "San Jose",
+        _ => throw new Exception("Blaaaaarg!")
+    }
+
+    return capital;
+}
+```
+
+Other Capabilities:
+1. Compound statements
+1. Coerce to a specific discard the result (to detect type matches)
 
 ---
 
 ## Covariant Return Types
 
 
-
 ---
 
 ## Low-level Programming
-
+1. 
 
 
 ---
@@ -110,5 +178,7 @@ Assert.False(mine == tradeIn);
 Here are some of the other features of the new language version (I thought these were important enough to mention, but not compelling enough to warrant their own section)
 
 1. **Init-only setters**: You can now set a property to only be mutable at initialization using the `public PropName { get; init; }` syntax.  You can even make use of this accessor by using the property intitializer syntax.
+1. **New expressions**: You can be a bit less verbose with constructor calls when the type is known.  Think of it like this: `Place place = new("Richmond, VA")`!
 1. **Top-level statements**: You no longer *have* to wrap you code in ```public static void Main(string[] args) { }```, because now C# supports top-level programs (to ease the burden of adoption).  I don't see the need, but it's cool.  The compiler will wrap the code you've written with the appropriate harness (if you're using async code it's smart enough to generate an async entry point behind the scenes).
+1. There has been a horde of small low-level programming enahcements (not my forte, mind you). Be sure to check out native sized integers and performance and interop from [Microsoft's documentation](https://docs.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-9) 
 1. 
