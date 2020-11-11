@@ -164,13 +164,10 @@ Other Capabilities:
 ---
 
 ## Covariant Return Types
+SOLID!  This update supports the Liskov substitution principle:
+> Let q(x) be a property provable about objects of x of type T. Then q(y) should be provable for objects y of type S where S is a subtype of T.
 
-
----
-
-## Low-level Programming
-1. 
-
+> Covariant return types permit flexibility in the return types of override methods. An override method can return a type derived from the return type of the overridden base method. This can be useful for records and for other types that support virtual clone or factory methods. -- [Microsoft](https://docs.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-9)
 
 ---
 
@@ -181,4 +178,3 @@ Here are some of the other features of the new language version (I thought these
 1. **New expressions**: You can be a bit less verbose with constructor calls when the type is known.  Think of it like this: `Place place = new("Richmond, VA")`!
 1. **Top-level statements**: You no longer *have* to wrap you code in ```public static void Main(string[] args) { }```, because now C# supports top-level programs (to ease the burden of adoption).  I don't see the need, but it's cool.  The compiler will wrap the code you've written with the appropriate harness (if you're using async code it's smart enough to generate an async entry point behind the scenes).
 1. There has been a horde of small low-level programming enahcements (not my forte, mind you). Be sure to check out native sized integers and performance and interop from [Microsoft's documentation](https://docs.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-9) 
-1. 
