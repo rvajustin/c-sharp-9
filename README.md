@@ -32,7 +32,7 @@ public record Tractor(string Make, string Model, int Year, string Attachment) : 
 ```
 
 ### The compiler synthesizes code to manage equality checking
-If two instances of the same record type with the same property values are evaluated as being equals.  Beware of quirks with inheritance -- if two records are compared but don't have the same properties, then they will not evaluate as being eqivalent!  
+If two instances of the same record type with the same property values are evaluated as being equals.  Beware of quirks with inheritance -- if two records are compared but don't have the same properties, then they will not evaluate as being equivalent!  
 ```csharp
 // given some record type
 public record Vehicle(string Make, string Model, int Year);
@@ -174,7 +174,7 @@ SOLID!  This update supports the Liskov substitution principle:
 ## Other details
 Here are some of the other features of the new language version (I thought these were important enough to mention, but not compelling enough to warrant their own section)
 
-1. **Init-only setters**: You can now set a property to only be mutable at initialization using the `public PropName { get; init; }` syntax.  You can even make use of this accessor by using the property intitializer syntax.
+1. **Init-only setters**: You can now set a property to only be mutable at initialization using the `public PropName { get; init; }` syntax.  You can even make use of this accessor by using the property initializer syntax.
 1. **New expressions**: You can be a bit less verbose with constructor calls when the type is known.  Think of it like this: `Place place = new("Richmond, VA")`!
 1. **Top-level statements**: You no longer *have* to wrap you code in ```public static void Main(string[] args) { }```, because now C# supports top-level programs (to ease the burden of adoption).  I don't see the need, but it's cool.  The compiler will wrap the code you've written with the appropriate harness (if you're using async code it's smart enough to generate an async entry point behind the scenes).
-1. There has been a horde of small low-level programming enahcements (not my forte, mind you). Be sure to check out native sized integers and performance and interop from [Microsoft's documentation](https://docs.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-9) 
+1. There has been a horde of small low-level programming enhancements (not my forte, mind you). Be sure to check out native sized integers and performance and interop from [Microsoft's documentation](https://docs.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-9) 
