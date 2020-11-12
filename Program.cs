@@ -13,7 +13,10 @@ namespace rvajustin.CSharp9
 
             PatternMatching.Example1();
             PatternMatching.Example2();
-            PatternMatching.Example3();
+            PatternMatching.Example3
+            
+            
+            See();
         }
     }
 }

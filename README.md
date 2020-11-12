@@ -14,7 +14,7 @@ There are large number of new features being released with C# 9.0 alongside .NET
 Records are a brand-new reference type that use member-based value checking for equality and are immutable.  Records and read-only structs differ in how they’re allocated (heap vs. stack).
 
 ### Records can be described in a couple ways.  
-I hope you like sugar!  *Oh, and that new property accessor is called the init-only setter accessor; writes are restricted to initialization only.  See more in [other details](#other-details).*
+I hope you like sugar! 
 ```csharp
 // the following two declarations are the exact same
 // verbose, verbose, verbose
@@ -30,9 +30,10 @@ public record Vehicle(string Make, string Model, int Year);
 // and here's the syntax for an inherited type
 public record Tractor(string Make, string Model, int Year, string Attachment) : Vehicle(Make, Model, Year);
 ```
+ *Oh, and that new property accessor is called the init-only setter accessor; writes are restricted to initialization only.  See more in [other details](#other-details).*
 
 ### The compiler synthesizes code to manage equality checking
-If two instances of the same record type with the same property values are evaluated as being equals.  Beware of quirks with inheritance -- if two records are compared but don't have the same properties, then they will not evaluate as being equivalent!  
+If two instances of the same record type with the same property values are compared, they will be assessed as equals.  Beware of quirks with inheritance -- if two records are compared but don't have the same properties, then they will **not** evaluate as being equivalent!  
 ```csharp
 // given some record type
 public record Vehicle(string Make, string Model, int Year);
@@ -111,7 +112,7 @@ public static string GetCapital(State state)
             capital = "Sacramento";
             break;
         default:
-             throw new Exception("Blaaaaarg!");
+             throw new ArgumentException("Blaaaaarg!");
     };
 
     return capital;
@@ -131,8 +132,8 @@ public static string GetCapital(State state)
     {
         State.Virginia => "Richmond",
         State.California => "Sacramento",
-        _ => throw new Exception("Blaaaaarg!")
-    }
+        _ => throw new ArgumentException("Blaaaaarg!")
+    };
 
     return capital;
 }
@@ -150,8 +151,8 @@ public static string GetCapital(State state, int year)
         State.California when year >= 1853 => "Benicia",
         State.California when year >= 1852 => "Vallejo",
         State.California when year >= 1850 => "San Jose",
-        _ => throw new Exception("Blaaaaarg!")
-    }
+        _ => throw new ArgumentException("Blaaaaarg!")
+    };
 
     return capital;
 }
